@@ -5,6 +5,8 @@ public class Basket {
     private int totalPrice = 0;
     private int limit;
 
+    private double totalWeight = 0;
+
     public Basket() {
         increaseCount(1);
         items = "Список товаров:";
@@ -16,10 +18,11 @@ public class Basket {
         this.limit = limit;
     }
 
-    public Basket(String items, int totalPrice) {
+    public Basket(String items, int totalPrice, int totalWeight) {
         this();
         this.items = this.items + items;
         this.totalPrice = totalPrice;
+        this.totalWeight = totalWeight;
     }
 
     public static int getCount() {
@@ -35,6 +38,11 @@ public class Basket {
     }
 
     public void add(String name, int price, int count) {
+        add(name, price, count, 1);
+    }
+
+    public void add(String name, int price, int count, double weight) {
+
         boolean error = false;
         if (contains(name)) {
             error = true;
@@ -50,16 +58,30 @@ public class Basket {
         }
 
         items = items + "\n" + name + " - " +
-            count + " шт. - " + price;
+                count + " шт. - " + price + ", " + "вес товара составил: " + weight;
         totalPrice = totalPrice + count * price;
+        this.totalWeight = totalWeight;
+        totalWeight = totalWeight + weight;
+    }
+
+    public double getTotalWeight() {
+        if (totalWeight > 0) {
+            System.out.println("Общий вес товара составил: " + totalWeight + "кг.");
+        } else if (totalWeight<=0) {
+            System.out.println("Точный вес всех товаров неизвестен, введите вес товара!!!");
+
+        }
+        return totalWeight;
     }
 
     public void clear() {
         items = "";
         totalPrice = 0;
+        totalWeight = 0;
     }
 
     public int getTotalPrice() {
+        System.out.println("Общая стоимость товара: " + totalPrice);
         return totalPrice;
     }
 
@@ -67,8 +89,7 @@ public class Basket {
         return items.contains(name);
     }
 
-    public void print(String title) {
-        System.out.println(title);
+    public void print() {
         if (items.isEmpty()) {
             System.out.println("Корзина пуста");
         } else {
