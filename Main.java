@@ -10,13 +10,12 @@ public class Main {
             elevator.move(floor);
         }
       */
+        Cargo cargo = new Cargo("4577GHHB4548JKI",
+                "Kyrgyzstan, Cholpon-Ata,  Sovet st. 105",
+                12.5,
+                new Dimensions(14, 15, 5));
 
-        Dimensions dimensions = new Dimensions(0.1,3,1.8);
-        Cargo cargo = new Cargo( "1215544QV21","51 Union st., South avenue",12);
-        cargo.isFlipAllowed(true);
-        cargo.isFragile(false);
         cargo.Printer();
-        dimensions.PrintDimension();
     }
 }
 

@@ -7,11 +7,14 @@ public class Cargo {
     private boolean fragile;
     private boolean flipAllowed;
 
+    private final Dimensions dimensions;
 
-    public Cargo(String registrationNumber,String address, double weight) {
+
+    public Cargo(String registrationNumber,String address, double weight, Dimensions dimensions) {
         this.weight = weight;
         this.address = address;
         this.registrationNumber = registrationNumber;
+        this.dimensions = dimensions;
 
     }
 
@@ -20,7 +23,7 @@ public class Cargo {
     }
 
     public Cargo setWeight(double weight) {
-        return new Cargo(registrationNumber,address,weight);
+        return new Cargo(registrationNumber,address,weight,dimensions);
     }
 
     public String getAddress() {
@@ -28,7 +31,7 @@ public class Cargo {
     }
 
     public Cargo setAddress(String address) {
-        return new Cargo(registrationNumber,address,weight);
+        return new Cargo(registrationNumber,address,weight,dimensions);
     }
 
     public String getRegistrationNumber() {
@@ -36,26 +39,19 @@ public class Cargo {
     }
 
     public Cargo setRegistrationNumber(String registrationNumber) {
-        return new Cargo(registrationNumber,address,weight);
+        return new Cargo(registrationNumber,address,weight,dimensions);
     }
 
-    public boolean isFlipAllowed( boolean flipAllowed ) {
-        this.flipAllowed = flipAllowed;
-        return flipAllowed;
+    public Cargo setDimensions (Dimensions dimensions) {
+        return new Cargo(registrationNumber,address,weight,dimensions);
     }
-
-    public boolean isFragile(boolean fragile) {
-        this.fragile = fragile;
-        return fragile;
-
-    }
-
     public void Printer () {
         System.out.println( "Address: " + address + "\n" +
                 "Registration number: " + registrationNumber + "\n" +
-                "Weight: "+ weight + "kg." + "\n"+
-                "Is flip allowed : " + flipAllowed + "\n" +
-                "Cargo stability :" + fragile);
+                "Weight: "+ weight + "kg."+ "\n" +
+                "Volume: " + dimensions.getVolume() + "\n" +
+                "Is Flip allowed : " + flipAllowed + "\n" +
+                "Cargo stability : " + fragile);
     }
 }
 

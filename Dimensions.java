@@ -3,13 +3,14 @@ public class Dimensions {
     private final double height;
     private final double length;
 
-    private double volume;
-
-
     public Dimensions(double width, double height, double length) {
         this.width = width;
         this.height = height;
         this.length = length;
+    }
+    public double getVolume () {
+        double volume = width * height * length;
+        return volume;
     }
 
     public double getWidth() { return width; }
@@ -32,9 +33,4 @@ public class Dimensions {
         return new Dimensions (width,length,height);
     }
 
-    public void PrintDimension (){
-        this.volume = volume;
-        volume = width * length * height;
-        System.out.println("Volume: " + volume);
-    }
 }
