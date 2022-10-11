@@ -3,9 +3,9 @@ package Computer;
 public class Monitor {
     private final double diagonal;
     private final MonitorType type;
-    private static int weight;
+    private static double weight;
 
-    public Monitor(double diagonal, MonitorType type, int weight) {
+    public Monitor(double diagonal, MonitorType type, double weight) {
         this.diagonal = diagonal;
         this.type = type;
         this.weight = weight;
@@ -19,7 +19,13 @@ public class Monitor {
         return type;
     }
 
-    public static int getWeight() {
+    public static double getWeight() {
         return weight;
+    }
+
+    public String toString(){
+        return getType() + "\n" +
+                "Диагональ: " + diagonal  + "\n" +
+                "Вес монитора: " + getWeight();
     }
 }

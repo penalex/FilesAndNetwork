@@ -4,11 +4,11 @@ public class Processor {
     private final double frequency;
     private final int core;
     private final String manufacturer;
-    private static  int weight = 0;
+    private static  double weight = 0;
 
 
 
-    public Processor(double frequency, int core, String manufacturer, int weight) {
+    public Processor(double frequency, int core, String manufacturer, double weight) {
         this.frequency = frequency;
         this.core = core;
         this.manufacturer = manufacturer;
@@ -42,7 +42,14 @@ public class Processor {
         return new Processor(frequency,core,manufacturer,weight);
     }
 
-    public static int getWeight() {
+    public static double getWeight() {
         return weight;
+    }
+
+    public String toString(){
+        return getManufacturer() + "\n" +
+                "Частота процессора: " + getFrequency() + "\n" +
+                "Количество ядер: " + getCore() + "\n" +
+                "Вес процессора: " + getWeight();
     }
 }

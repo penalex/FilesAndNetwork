@@ -3,9 +3,9 @@ package Computer;
 public class OperationalMemory {
     private final String type;
     private final int volume;
-    private static  int weight = 0;
+    private static double weight = 0;
 
-    public OperationalMemory(String type, int volume, int weight) {
+    public OperationalMemory(String type, int volume, double weight) {
         this.type = type;
         this.volume = volume;
         this.weight = weight;
@@ -32,7 +32,13 @@ public class OperationalMemory {
     public OperationalMemory setWeight(int weight) {
         return new OperationalMemory(type,volume,weight);
     }
-    public static int getWeight() {
+    public static double getWeight() {
         return weight;
+    }
+
+    public String toString () {
+        return getType() + "\n" +
+                "Обьем памяти: " + getVolume() + "\n" +
+                "Вес ОЗУ: " + getWeight();
     }
 }
