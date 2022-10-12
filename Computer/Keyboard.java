@@ -2,8 +2,8 @@ package Computer;
 
 public class Keyboard {
     private final String type;
-    private final boolean illumination;
-    private static double weight;
+    private boolean illumination;
+    private double weight;
 
     public Keyboard(String type, boolean illumination, double weight) {
         this.type = type;
@@ -28,7 +28,15 @@ public class Keyboard {
         return illumination;
     }
 
-    public static double getWeight() {
+    public  double getWeight() {
         return weight;
+    }
+
+    public void setIllumination(boolean illumination) {
+        this.illumination = illumination;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }
