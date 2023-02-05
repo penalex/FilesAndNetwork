@@ -2,23 +2,23 @@ package AbstractClasses.practice_1;
 
 public class TopManager implements Employee {
 
-    private final double FIXED_SALARY = 30000+Math.random() * 70000;
+    private final Company company;
 
+    private final double SALARY = (Math.random() * (150000-75000))+75000;
 
-    private final int incomeForCompany;
+    private final int topManagers_sales;
 
-    public TopManager(Company company, int incomeForCompany) {
-        this.incomeForCompany = incomeForCompany;
-    }
-
-    public TopManager(int incomeForCompany) {
-        this.incomeForCompany = (int) (Math.random() * 25000)+115000;
+    public TopManager(Company company){
+        this.company = company;
+        topManagers_sales= (int) ((Math.random() * (290000-245000))+245000);
     }
 
     @Override
     public int getMonthSalary() {
-        if (incomeForCompany >= 10000000) {
-        }
-        return (int) (FIXED_SALARY+(int) (incomeForCompany * 1.5));
+        return company.getIncome()>10000000 ? (int) (SALARY * 1.5) : (int) SALARY;
+    }
+
+    public double getIncomeOfTopManager() {
+        return topManagers_sales;
     }
 }

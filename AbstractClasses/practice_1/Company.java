@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class Company implements Employee {
 
-    public static double income;
     public String companyName;
 
     public final List<Employee> employees = new ArrayList<>();
@@ -23,24 +22,30 @@ public class Company implements Employee {
     }
 
     public void hireAll(Collection<Employee> employees) {
-        this.employees.addAll(employees);
+        for (Employee e: employees){
+            hire(e);
+        }
     }
 
     public void fire(Employee employee) {
         employees.remove(employee);
     }
 
-    public void setIncome(int income) {
-        this.income = income;
-    }
-
     public double getIncome() {
-        employees.stream()
-                .sorted(Comparator.comparing(Employee::getIncome))
-                .limit((long) income).collect(Collectors.toList());
+        int income = 0;
+        for (Employee e: employees ){
+            if (e instanceof Manager){
+                income += ((Manager) e).getIncomeOfManager();
+            }
+            if (e instanceof Operator){
+                income += ((Operator) e).getIncomeOfOperator();
+            }
+            if (e instanceof TopManager){
+                income += ((TopManager) e).getIncomeOfTopManager();
+            }
+          }
         return income;
     }
-
 
     public List<Employee> getLowestSalaryStaff(int count) {
         return employees.stream()

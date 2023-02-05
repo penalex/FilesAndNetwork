@@ -1,20 +1,23 @@
 package AbstractClasses.practice_1;
 
+
 public class Operator implements Employee {
-    private final double FIXED_SALARY = 30000+Math.random() * 70000;
 
-    private final int incomeForCompany;
+    private final double SALARY = (Math.random() * (45000-20000))+20000;
 
-    public Operator(Company company, int incomeForCompany) {
-        this.incomeForCompany = incomeForCompany;
-    }
+    private final int operators_sales;
 
-    public Operator(int incomeForCompany) {
-        this.incomeForCompany = incomeForCompany;
+    public Operator(){
+        operators_sales = (int) ((Math.random() * (90000-45000))+45000);
     }
 
     @Override
     public int getMonthSalary() {
-        return (int) (FIXED_SALARY);
+        return (int) (SALARY);
     }
+
+    public double getIncomeOfOperator() {
+        return operators_sales;
+    }
+
 }

@@ -1,40 +1,70 @@
 package AbstractClasses.practice_1;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        List<Employee> employees = new ArrayList<>();
+        List<Employee> workers = new ArrayList<>();
 
         Company samsung = new Company("Samsung");
+
         hireEmployees(samsung);
-        samsung.hireAll(employees);
-        System.out.println();
+        samsung.hireAll(workers);
+        System.out.println("__________________________________________");
         printHighestSalaries(samsung);
+        System.out.println("__________________________________________");
         printLowestSalaries(samsung);
-        System.out.println();
+        System.out.println("__________________________________________");
+        System.out.println("Доход компании составил: "+(long)samsung.getIncome());
+        System.out.println("__________________________________________");
         fireHalfEmployees(samsung);
-        System.out.println();
+        System.out.println("__________________________________________");
         printHighestSalaries(samsung);
+        System.out.println("__________________________________________");
         printLowestSalaries(samsung);
+        System.out.println("__________________________________________");
+        System.out.println("Доход компании составил: "+(long)samsung.getIncome());
+        System.out.println();
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println();
+
+        Company aser = new Company("aser");
+        
+        hireEmployees(aser);
+        samsung.hireAll(workers);
+        System.out.println("__________________________________________");
+        printHighestSalaries(aser);
+        System.out.println("__________________________________________");
+        printLowestSalaries(aser);
+        System.out.println("__________________________________________");
+        System.out.println("Доход компании составил: "+(long)aser.getIncome());
+        System.out.println("__________________________________________");
+        fireHalfEmployees(aser);
+        System.out.println("__________________________________________");
+        printHighestSalaries(aser);
+        System.out.println("__________________________________________");
+        printLowestSalaries(aser);
+        System.out.println("__________________________________________");
+        System.out.println("Доход компании составил: "+(long)aser.getIncome());
+
+
     }
 
     private static void hireEmployees(Company company) {
 
         for (int i = 0; i < 180; i++) {
-            Employee operator = new Operator(15000);
+            Operator operator = new Operator();
             company.hire(operator);
         }
 
         for (int i = 0; i < 80; i++) {
-            Employee manager = new Manager(100000);
+            Manager manager = new Manager();
             company.hire(manager);
         }
         for (int i = 0; i < 10; i++) {
-            Employee topManager = new TopManager(5000000);
+            TopManager topManager = new TopManager(company);
             company.hire(topManager);
         }
 
