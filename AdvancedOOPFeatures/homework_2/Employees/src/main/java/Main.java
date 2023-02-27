@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -13,6 +14,7 @@ public class Main {
     public static Employee findEmployeeWithHighestSalary(List<Employee> staff, int year) {
         //TODO Метод должен вернуть сотрудника с максимальной зарплатой среди тех,
         // кто пришёл в году, указанном в переменной year
-        return null;
+       return staff.stream().filter(e -> e.getWorkStart().getYear()+1900 == year)
+               .max(Comparator.comparing(Employee::getSalary)).get();
     }
 }
