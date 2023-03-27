@@ -2,8 +2,8 @@ package core;
 
 public class Station implements Comparable<Station>
 {
-    private Line line;
-    private String name;
+    private final Line line;
+    private final String name;
 
     public Station(String name, Line line)
     {
