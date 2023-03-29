@@ -22,7 +22,7 @@ public class RouteCalculator {
         }
 
         route = getRouteWithOneConnection(from, to);
-        if (route != null) {
+        if (route!=null && route.size()>0) {  //// изменено ///////
             return route;
         }
 
@@ -100,24 +100,6 @@ public class RouteCalculator {
         return route;
     }
 
-    private boolean isConnected(Station station1, Station station2) {
-        Set<Station> connected = stationIndex.getConnectedStations(station1);
-        return connected.contains(station2);
-    }
-
-    private List<Station> getRouteViaConnectedLine(Station from, Station to) {
-        Set<Station> fromConnected = stationIndex.getConnectedStations(from);
-        Set<Station> toConnected = stationIndex.getConnectedStations(to);
-        for (Station srcStation : fromConnected) {
-            for (Station dstStation : toConnected) {
-                if (srcStation.getLine().equals(dstStation.getLine())) {
-                    return getRouteOnTheLine(srcStation, dstStation);
-                }
-            }
-        }
-        return null;
-    }
-
     private List<Station> getRouteWithTwoConnections(Station from, Station to) {
         if (from.getLine().equals(to.getLine())) {
             return null;
@@ -148,4 +130,25 @@ public class RouteCalculator {
 
         return route;
     }
+
+    private boolean isConnected(Station station1, Station station2) {
+        Set<Station> connected = stationIndex.getConnectedStations(station1);
+        return connected.contains(station2);
+    }
+
+    private List<Station> getRouteViaConnectedLine(Station from, Station to) {
+        Set<Station> fromConnected = stationIndex.getConnectedStations(from);
+        Set<Station> toConnected = stationIndex.getConnectedStations(to);
+        for (Station srcStation : fromConnected) {
+            for (Station dstStation : toConnected) {
+                if (srcStation.getLine().equals(dstStation.getLine())) {
+                    return getRouteOnTheLine(srcStation, dstStation);
+                }
+            }
+        }
+        return null;
+    }
+
+
+
 }

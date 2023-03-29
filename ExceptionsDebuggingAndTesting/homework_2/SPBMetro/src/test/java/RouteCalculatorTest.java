@@ -54,30 +54,33 @@ public class RouteCalculatorTest extends TestCase {
 
     public void testGetShortestRouteOnTheLine() {
         List<Station> actual = routeCalculator.getShortestRoute(
-                stationIndex.getStation("Новочеркасская"), stationIndex.getStation("Улица Дыбенко"));
-        List<Station> expected = Arrays.asList(new Station("Новочеркасская", lineViolet),
-                new Station("Ладожская", lineViolet),
-                new Station("Проспект Большевиков", lineViolet),
-                new Station("Улица Дыбенко", lineViolet));
+                stationIndex.getStation("Нарвская"), stationIndex.getStation("Проспект Ветеранов"));
+        List<Station> expected = Arrays.asList(new Station("Нарвская", lineViolet),
+                stationIndex.getStation("Кировский завод"),
+                stationIndex.getStation("Автово"),
+                stationIndex.getStation("Ленинский проспект"),
+                stationIndex.getStation("Проспект Ветеранов"));
+        assertEquals(expected,actual);
     }
 
     public void testGetShortestRouteWithOneConnection() {
         List<Station> actual = routeCalculator.getShortestRoute(
                 stationIndex.getStation("Чернышевская"), stationIndex.getStation("Маяковская"));
-        List<Station> expected = Arrays.asList(new Station("Чернышевская", lineViolet),
-                new Station("Площадь Восстания", lineViolet),
-                new Station("Маяковская", lineGreen));
+        List<Station> expected = Arrays.asList(stationIndex.getStation("Чернышевская"),
+                stationIndex.getStation("Площадь Восстания"),
+                stationIndex.getStation("Маяковская"));
+        assertEquals(expected,actual);
 
     }
 
     public void testGetShortestRouteWithTwoConnections() {
-        List<Station> actual = routeCalculator.getShortestRoute(
-                stationIndex.getStation("Чернышевская"), stationIndex.getStation("Лиговский проспект"));
-        List<Station> expected = Arrays.asList(new Station("Чернышевская", lineViolet),
-                new Station("Площадь Восстания", lineViolet),
-                new Station("Владимирская", lineGreen),
-                new Station("Достоевская", lineGreen),
-                new Station("Лиговский проспект", lineRed));
+        List<Station> actual = routeCalculator.getShortestRoute(stationIndex.getStation("Чернышевская"), stationIndex.getStation("Достоевская"));
+        List<Station>expected = Arrays.asList(
+                stationIndex.getStation("Чернышевская"),
+                stationIndex.getStation("Площадь Восстания"),
+                stationIndex.getStation("Владимирская"),
+                stationIndex.getStation("Достоевская"));
+        assertEquals(expected, actual);
     }
 
 
