@@ -1,4 +1,5 @@
 import java.io.File;
+//Класс поисковик
 
 public class FilesSearch {
     private String JSONFilesAbsolutePath;

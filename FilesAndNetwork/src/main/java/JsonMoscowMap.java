@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+//Карта метро
 
 public class JsonMoscowMap {
     private JSONObject mainObject;

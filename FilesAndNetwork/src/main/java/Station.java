@@ -1,5 +1,5 @@
 public class Station {
-
+//..
     private final String name;
     private final String line;
     private final Boolean connection;

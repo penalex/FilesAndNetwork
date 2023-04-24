@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+//запись
 
 public class JsonWriter {
     public static void writer(JSONObject object, String path) {
