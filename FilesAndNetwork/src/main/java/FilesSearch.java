@@ -1,11 +1,11 @@
 import java.io.File;
 
 public class FilesSearch {
-    private final String folderPath = "DataCollector/stations-data/";
     private String JSONFilesAbsolutePath;
     private String CSVFilesAbsolutePath;
 
     public FilesSearch() {
+        String folderPath = "DataCollector/stations-data/";
         getJSONfiles(folderPath);
         getCSVfiles(folderPath);
     }
@@ -18,6 +18,7 @@ public class FilesSearch {
         }
         try {
             File[] files = folder.listFiles();
+            assert files != null;
             for (File file : files) {
                 JSONFilesAbsolutePath += getJSONfiles(file.getAbsolutePath());
             }

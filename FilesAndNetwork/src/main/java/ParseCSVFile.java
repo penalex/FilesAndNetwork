@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseCSVFile {
-    private List<String> csvLines;
     private List<StationDate> stationsDates;
 
     public ParseCSVFile() {
@@ -27,7 +26,7 @@ public class ParseCSVFile {
 
     private List<String> getCsvInLines() {
         List<String> lines;
-        csvLines = new ArrayList<>();
+        List<String> csvLines = new ArrayList<>();
 
         FilesSearch filesSearch = new FilesSearch();
         String[] paths = filesSearch.getCSVFilesAbsolutePath().split("\n");
@@ -45,11 +44,11 @@ public class ParseCSVFile {
 
     private void listFormatted() {
         for (int i = 0; i < stationsDates.size(); i ++) {
-            String name = stationsDates.get(i).getName();
-            String date = stationsDates.get(i).getDate();
+            String name = stationsDates.get(i).name();
+            String date = stationsDates.get(i).date();
             for (int j = 0; j <stationsDates.size(); j++) {
-                String anotherName = stationsDates.get(j).getName();
-                String anotherdate = stationsDates.get(j).getDate();
+                String anotherName = stationsDates.get(j).name();
+                String anotherdate = stationsDates.get(j).date();
                 if (name.equals(anotherName) && date.equals(anotherdate)) {
                     stationsDates.remove(j);
                 }

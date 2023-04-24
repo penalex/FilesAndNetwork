@@ -11,10 +11,7 @@ import java.util.List;
 
 public class ParseJSONFile {
 
-    private List<String> jsonToString;
     private List<StationDepth> stationsDepth;
-    private final String sameName1 = "Курская";
-    private final String sameName2 = "Бауманская";
 
 
     public ParseJSONFile(){
@@ -28,7 +25,7 @@ public class ParseJSONFile {
 
     private List<String> getJsonToString() {
 
-        jsonToString = new ArrayList<>();
+        List<String> jsonToString = new ArrayList<>();
         FilesSearch search = new FilesSearch();
         String[] paths = search.getJSONFilesAbsolutePath().split("\n");
 
@@ -59,20 +56,20 @@ public class ParseJSONFile {
             }
         } catch (ClassCastException e) {
             e.getStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
+        } catch (ParseException | NullPointerException e) {
             e.printStackTrace();
         }
     }
 
     private void listFormatted() {
         for (int i = 0; i < stationsDepth.size(); i++) {
-            String name = stationsDepth.get(i).getName();
-            Double depth = Double.parseDouble(stationsDepth.get(i).getDepth());
+            String name = stationsDepth.get(i).name();
+            Double depth = Double.parseDouble(stationsDepth.get(i).depth());
             for (int j = 0; j < stationsDepth.size(); j++) {
-                String anotherName = stationsDepth.get(j).getName();
-                Double anotherDepth = Double.parseDouble(stationsDepth.get(j).getDepth());
+                String anotherName = stationsDepth.get(j).name();
+                Double anotherDepth = Double.parseDouble(stationsDepth.get(j).depth());
+                String sameName2 = "Бауманская";
+                String sameName1 = "Курская";
                 if (name.equals(anotherName) && !name.equals(sameName1) && !name.equals(sameName2)) {
                     if (depth.compareTo(anotherDepth) > 0) {
                         stationsDepth.remove(j);

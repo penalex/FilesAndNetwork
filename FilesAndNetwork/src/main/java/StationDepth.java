@@ -1,23 +1,7 @@
-public class StationDepth {
-
-    private final String name;
-    private final String depth;
-
-    public StationDepth(String name, String depth) {
-        this.name = name;
-        this.depth = depth;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDepth() {
-        return depth;
-    }
+public record StationDepth(String name, String depth) {
 
     @Override
     public String toString() {
-        return "StationDepth{" + "name='" + name + '\'' + ", depth='" + depth + '\'' + '}';
+        return "StationDepth{"+"name='"+name+'\''+", depth='"+depth+'\''+'}';
     }
 }

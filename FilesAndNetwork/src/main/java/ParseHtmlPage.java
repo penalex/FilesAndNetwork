@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseHtmlPage {
-    private final String url = "https://skillbox-java.github.io/";
     private final String htmlPath = "DataCollector/data/code.html";
     public List<Line> lines;
     public List<Station> stations;
@@ -21,6 +20,7 @@ public class ParseHtmlPage {
 
     private void getHtmlPage() {
         try {
+            String url = "https://skillbox-java.github.io/";
             Document htmlFile = Jsoup.connect(url).get();
             PrintWriter writer = new PrintWriter(htmlPath);
             writer.write(htmlFile.outerHtml());

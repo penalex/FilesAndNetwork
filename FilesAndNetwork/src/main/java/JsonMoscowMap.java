@@ -7,8 +7,6 @@ import java.util.List;
 
 public class JsonMoscowMap {
     private JSONObject mainObject;
-    private JSONObject stationsObjectJson;
-    private JSONArray linesArrayJson;
     private LinkedHashMap<String, String> stationsPerLine;
 
     private final ParseHtmlPage parseHtmlPage = new ParseHtmlPage();
@@ -20,46 +18,45 @@ public class JsonMoscowMap {
     }
 
 
-    private JSONObject createJsonObject() {
+    @SuppressWarnings("unchecked")
+    private void createJsonObject() {
         String keyStations = "stations";
         String keyLines = "lines";
         getStationsPerLine();
         mainObject = new JSONObject();
 
 
-        stationsObjectJson = new JSONObject();
-        for (int i = 0; i < lines.size(); i++) {
+        JSONObject stationsObjectJson = new JSONObject();
+        for (Line value : lines) {
             JSONArray stationsArray = new JSONArray();
-            String listStations = stationsPerLine.get(lines.get(i).getNumber()).trim();
+            String listStations = stationsPerLine.get(value.number()).trim();
             String[] fragments = listStations.split("\\s{2}");
             Collections.addAll(stationsArray, fragments);
-            stationsObjectJson.put(lines.get(i).getNumber(), stationsArray);
+            stationsObjectJson.put(value.number(), stationsArray);
         }
 
-        linesArrayJson = new JSONArray();
-        for (int i = 0; i < lines.size(); i++) {
+        JSONArray linesArrayJson = new JSONArray();
+        for (Line line : lines) {
             JSONObject obj = new JSONObject();
-            obj.put("number", lines.get(i).getNumber());
-            obj.put("name", lines.get(i).getName());
+            obj.put("number", line.number());
+            obj.put("name", line.name());
             linesArrayJson.add(obj);
         }
 
         mainObject.put(keyStations, stationsObjectJson);
         mainObject.put(keyLines, linesArrayJson);
-        return mainObject;
     }
 
-    private LinkedHashMap<String, String> getStationsPerLine() {
+    private void getStationsPerLine() {
         stationsPerLine = new LinkedHashMap<>();
 
-        for (int i = 0; i < stations.size(); i++) {
-            if (!stationsPerLine.containsKey(stations.get(i).getLine())) {
-                stationsPerLine.put(stations.get(i).getLine(), "");
+        for (Station station : stations) {
+            if (!stationsPerLine.containsKey(station.getLine())) {
+                stationsPerLine.put(station.getLine(), "");
             }
-            stationsPerLine.put(stations.get(i).getLine(),
-                    stationsPerLine.get(stations.get(i).getLine()) + "  " + stations.get(i).getName());
+            stationsPerLine.put(station.getLine(),
+                    stationsPerLine.get(station.getLine())+"  "+station.getName());
         }
-        return stationsPerLine;
     }
 
     public JSONObject getMainObject() {

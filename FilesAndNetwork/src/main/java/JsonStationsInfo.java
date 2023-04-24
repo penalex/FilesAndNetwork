@@ -3,10 +3,9 @@ import org.json.simple.JSONObject;
 
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class JsonStationsInfo {
     private JSONObject mainObject;
-    private JSONArray stationsArray;
-    private final String mainKey = "stations";
 
     private final ParseHtmlPage parseHtmlPage = new ParseHtmlPage();
     private final ParseJSONFile parseJsonFile = new ParseJSONFile();
@@ -21,39 +20,40 @@ public class JsonStationsInfo {
         createJsonObject();
     }
 
-    private JSONObject createJsonObject() {
+    @SuppressWarnings("unchecked")
+    private void createJsonObject() {
         mainObject = new JSONObject();
 
-        stationsArray = new JSONArray();
-        for (int stationIndex = 0; stationIndex < stations.size(); stationIndex++) {
+        JSONArray stationsArray = new JSONArray();
+        for (Station station : stations) {
             JSONObject obj = new JSONObject();
-            String etalonName = stations.get(stationIndex).getName();
+            String etalonName = station.getName();
             obj.put("name", etalonName);
 
-            for (int lineIndex = 0; lineIndex < lines.size(); lineIndex++) {
-                if (stations.get(stationIndex).getLine().equals(lines.get(lineIndex).getNumber())) {
-                    String nameOfLine = lines.get(lineIndex).getName();
+            for (Line line : lines) {
+                if (station.getLine().equals(line.number())) {
+                    String nameOfLine = line.name();
                     obj.put("line", nameOfLine);
                 }
             }
-            for (int dateIndex = 0; dateIndex < stationDates.size(); dateIndex++) {
-                if (stationDates.get(dateIndex).getName().equals(etalonName)) {
-                    obj.put("date", stationDates.get(dateIndex).getDate());
+            for (StationDate stationDate : stationDates) {
+                if (stationDate.name().equals(etalonName)) {
+                    obj.put("date", stationDate.date());
                 }
             }
 
-            for (int depthIndex = 0; depthIndex < stationsDepth.size(); depthIndex++) {
-                if (stationsDepth.get(depthIndex).getName().equals(etalonName)
-                        && stationsDepth.get(depthIndex).getDepth() != "-0") {
-                    obj.put("depth", stationsDepth.get(depthIndex).getDepth());
+            for (StationDepth stationDepth : stationsDepth) {
+                if (stationDepth.name().equals(etalonName)
+                        && stationDepth.depth() != "-0") {
+                    obj.put("depth", stationDepth.depth());
                 }
             }
 
-            obj.put("hasConnection", stations.get(stationIndex).getHasConnection());
+            obj.put("hasConnection", station.getHasConnection());
             stationsArray.add(obj);
         }
+        String mainKey = "stations";
         mainObject.put(mainKey, stationsArray);
-        return mainObject;
     }
 
     public JSONObject getMainObject() {
